@@ -13,23 +13,20 @@ Filter script from Xingchen's repository:
 
 # Local test
 
-Setup proxy:
 ```bash
+# Setup proxy:
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
-```
-Go to a specific directory of the year that you want to test:
-```
+
+# Go to a specific directory of the year that you want to test:
 cd 2022
-```
-Make a test directory & copy necessary files:
-```bash
+
+# Make a test directory & copy necessary files:
 mkdir test
 cd test
 cp ../voms_proxy.txt .
 cp ../config/*fragment.py .
-```
-Test run:
-```bash
+
+# Test run:
 ../*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 ```
 - Test with 100 events (takes about 10-20 minutes depending on your server)
@@ -40,14 +37,14 @@ Test run:
 
 # CRAB task submission
 
-If you want to submit CRAB task on your local server,
 ```bash
+# Setup cmsenv:
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 cmssw-el8
-export SCRAM_ARCH=el8_amd64_gcc10
+cmsrel CMSSW_14_0_21
+cd CMSSW_14_0_21/src
+cmsenv
+
+# Check if you have write permission
+crab checkwrite --site=T2_KR_KISTI
 ```
-and run
-```bash
-./initSetup.sh
-```
-It may take few minutes depending on your connection.
