@@ -9,7 +9,6 @@ Filter script from Xingchen's repository:
 - https://github.com/xingchen-fan/DY_stat_boost
 
 
-<br>
 
 # Local test
 
@@ -33,7 +32,7 @@ cp ../config/*fragment.py .
 
 
 
-<br>
+
 
 # CRAB task submission
 
