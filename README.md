@@ -35,17 +35,39 @@ cp ../config/*fragment.py .
 
 
 # CRAB task submission
+First, you need to revise crab config file
+
+```bash
+# Go to config directory of specific a year
+cd /path/to/DY_fakehPhoton_run3/2022/config
+
+# Open Config file
+vim *crabConfig.py
+```
+There are two parameters to edit 
+- `config.Data.totalUnits`: Number of jobs for task
+- `config.Site.storageSite`: The local server where you want to store the MC
+
+Submission
 
 ```bash
 # Setup cmsenv:
+cd /path/to/DY_fakehPhoton_run3
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 cmssw-el8
 cmsrel CMSSW_14_0_21
 cd CMSSW_14_0_21/src
 cmsenv
+cd -
+
+# Go to a specific directory of a year
+cd 2022
 
 # Check if you have write permission
 crab checkwrite --site=T2_KR_KISTI
+
+# Submit crab task
+crab submit -c config/*crabConfig.py
 ```
 
 
