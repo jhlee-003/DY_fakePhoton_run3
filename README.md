@@ -13,11 +13,11 @@ Filter script from Xingchen's repository:
 # Local test
 
 ```bash
-# Setup proxy:
-voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
-
 # Go to a specific directory of the year that you want to test:
 cd 2022
+
+# Setup proxy:
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
 
 # Make a test directory & copy necessary files:
 mkdir test
