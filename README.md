@@ -28,7 +28,7 @@ cp ../config/*fragment.py .
 # Test run:
 bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 ```
-- Test with 100 events (takes about 10-20 minutes depending on your server)
+- Test with 100 events
 
 
 
