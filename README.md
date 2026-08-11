@@ -114,7 +114,7 @@ voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
 
 Check if you have write permission (only if you want to transfer the output to storage site):
 ```
-crab checkwrite --site=T2_KR_KISTI #Your storage site
+crab checkwrite --site=T2_KR_KISTI
 ```
 
 Submit crab task:
