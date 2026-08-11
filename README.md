@@ -81,28 +81,44 @@ Parameters to edit:
 
 When you're done, type `:wq!` to save and exit
 
+Now, go back to the repo directory:
+```bash
+cd ../..
+```
+
 ### CRAB Submission
 
+Go to repo directory if you're not:
 ```bash
-# Setup cmsenv:
 cd /path/to/DY_fakePhoton_run3
-source /cvmfs/cms.cern.ch/cmsset_default.sh
+```
+
+Setup CMSSW environment:
+```bash
 cmssw-el8
 cmsrel CMSSW_14_0_21
 cd CMSSW_14_0_21/src
 cmsenv
 cd -
+```
 
-# Go to a specific directory of a year
+Go to a specific directory of a year:
+```
 cd 2022
+```
 
-# Setup proxy (script requires proxy credential file / you can copy this file to other year's directory as long as it's valid)
+Setup proxy (script requires proxy credential file / you can copy this file to other year's directory as long as it's valid):
+```bash
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
+```
 
-# Check if you have write permission (only if you want to transfer the output to storage site)
+Check if you have write permission (only if you want to transfer the output to storage site):
+```
 crab checkwrite --site=T2_KR_KISTI #Your storage site
+```
 
-# Submit crab task
+Submit crab task:
+```
 crab submit -c config/*crabConfig.py
 ```
 
