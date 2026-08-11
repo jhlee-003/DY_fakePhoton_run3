@@ -37,12 +37,6 @@ config.JobType.outputFiles = [
     "DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8__Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6__privateProduction__job.root"
 ]
 
-config.JobType.scriptArgs  = [
-    "script=ProduceDYfakePhoton22EE.sh",
-    "events=10000",
-    "names=DYfakePhoton22EE_FullSim.env"
-]
-
 config.section_("Data")
 config.Data.outputPrimaryDataset = base
 config.Data.publication = False
@@ -51,8 +45,15 @@ config.Data.unitsPerJob = 1
 
 config.section_("Site")
 
-#-----------Edit Below------------
-config.Data.totalUnits  = 10             # Number of CRAB jobs
+config.JobType.scriptArgs  = [
+    "script=ProduceDYfakePhoton22EE.sh",
+    "events=10000",
+    "names=DYfakePhoton22EE_FullSim.env",
+
+#--------------------------Edit Below--------------------------
+    "stageout_dir=YOUR_DIR/2022EE"       # Your directory name inside htozg-dy-privatemc directory
+]
+config.Data.totalUnits  = 10000          # Number of CRAB jobs
 config.Site.storageSite = "T3_KR_KNU"    # Storage site where you have write permission (Required syntactically by CRAB)
 config.General.transferOutputs = False   # Change to `True` if you want to transfer your output to your storage site
 config.General.transferLogs = False      # Change to `True` if you want to transfer the log to your storage site
