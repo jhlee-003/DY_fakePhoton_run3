@@ -1,6 +1,6 @@
 # DY_fakePhoton_run3
 
-Files for producing DY fake-photon NanoAOD sample for run3.
+Files for producing DY fake jet photon NanoAOD sample for run3.
 
 MC gen scripts are originally from Jaebak's repository: 
 - https://github.com/jaebak/produceMC
