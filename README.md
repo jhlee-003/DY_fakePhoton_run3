@@ -48,9 +48,9 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
     ```
 
 3. Clone this repository:
-  ```bash
-  git clone https://github.com/jhlee-003/DY_fakePhoton_run3.git
-  ```
+    ```bash
+    git clone https://github.com/jhlee-003/DY_fakePhoton_run3.git
+    ```
 
 4. Check if you have your own directory in the `htozg-dy-privatemc` CERNBOX
    ```bash
@@ -72,9 +72,9 @@ You're see `Edit below` at the bottom
 
 Parameters to edit:
 - `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory
-  - If you don't have your directory, replace 'YOUR_DIR' with your name (for example, 'junhyuk')
-- `config.Data.totalUnits`: Number of jobs for the current task (default 10,000 jobs)
-  - Each job submits 10,000 events (will give ~1,000 events at NanoAOD level)
+  - If you don't have your directory, replace `YOUR_DIR` with your name (for example, `junhyuk`)
+- `config.Data.totalUnits`: Number of jobs for the current task (default: 10,000 jobs)
+  - Each job submits 10,000 events (10,000 jobs → 100,000,000 events)
 - `config.Site.storageSite`: Storage site where you have write permission
 - If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
 
