@@ -63,8 +63,11 @@ cd -
 # Go to a specific directory of a year
 cd 2022
 
+# Setup proxy if you haven't (script requires proxy credential file)
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
+
 # Check if you have write permission
-crab checkwrite --site=T2_KR_KISTI
+crab checkwrite --site=T2_KR_KISTI #Your current server
 
 # Submit crab task
 crab submit -c config/*crabConfig.py
