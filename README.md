@@ -58,7 +58,7 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
    ```
    - The script will automatically generate a new directory if you don't have it
 
-### CRAB config setup
+### CRAB configuration file setup
 First, you need to revise CRAB config file
 
 ```bash
@@ -69,6 +69,7 @@ cd DY_fakePhoton_run3/2022/config
 vim *crabConfig.py
 ```
 You're see `Edit below` at the bottom
+- Press key `i` to start editing
 
 Parameters to edit:
 - `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory
@@ -77,6 +78,8 @@ Parameters to edit:
   - Each job submits 10,000 events (10,000 jobs → 100,000,000 events)
 - `config.Site.storageSite`: Storage site where you have write permission
 - If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
+
+When you're done, type `:wq!` to save and exit
 
 ### CRAB Submission
 
