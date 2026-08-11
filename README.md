@@ -73,7 +73,7 @@ You're see `Edit below` at the bottom
 Parameters to edit:
 - `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory
   - If you don't have your directory, replace 'YOUR_DIR' with your name (for example, 'junhyuk')
-- `config.Data.totalUnits`: Number of jobs for task
+- `config.Data.totalUnits`: Number of jobs for the current task (default 10,000 jobs)
   - Each job submits 10,000 events (will give ~1,000 events at NanoAOD level)
 - `config.Site.storageSite`: Storage site where you have write permission
 - If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
