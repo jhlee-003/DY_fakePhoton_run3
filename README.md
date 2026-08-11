@@ -37,24 +37,40 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 
 
 # CRAB task submission
+
+Log into LXPLUS
+
+Go to your AFS home directory
+- For example, mine is
+  ```bash
+  /afs/cern.ch/user/j/junhyuk/
+  ```
+Clone this repository:
+```bash
+git clone https://github.com/jhlee-003/DY_fakePhoton_run3.git
+```
+
 First, you need to revise crab config file
 
 ```bash
 # Go to config directory of specific a year
-cd /path/to/DY_fakehPhoton_run3/2022/config
+cd DY_fakePhoton_run3/2022/config
 
 # Open Config file
 vim *crabConfig.py
 ```
-There are two parameters to edit 
+You're see `Edit below` at the bottom
+Parameters to edit:
+- `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory
 - `config.Data.totalUnits`: Number of jobs for task
-- `config.Site.storageSite`: The local server where you want to store the MC
+- `config.Site.storageSite`: Storage site where you have write permission
+- If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
 
 Submission
 
 ```bash
 # Setup cmsenv:
-cd /path/to/DY_fakehPhoton_run3
+cd /path/to/DY_fakePhoton_run3
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 cmssw-el8
 cmsrel CMSSW_14_0_21
@@ -65,11 +81,11 @@ cd -
 # Go to a specific directory of a year
 cd 2022
 
-# Setup proxy if you haven't (script requires proxy credential file)
+# Setup proxy (script requires proxy credential file / you can copy this file to other year's directory as long as it's valid)
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
 
-# Check if you have write permission
-crab checkwrite --site=T2_KR_KISTI #Your current server
+# Check if you have write permission (only if you want to transfer the output to storage site)
+crab checkwrite --site=T2_KR_KISTI #Your storage site
 
 # Submit crab task
 crab submit -c config/*crabConfig.py
