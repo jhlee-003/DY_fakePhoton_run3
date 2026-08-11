@@ -28,7 +28,7 @@ cp ../config/*fragment.py .
 # Test run:
 bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 ```
-- Test with 100 events
+- Test with 100 events (~ 30 min.)
 
 
 
@@ -78,16 +78,16 @@ crab submit -c config/*crabConfig.py
 
 I used following dataset for reference:
 
-2022:
+- 2022:
 /DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v5/NANOAODSIM
 
-2022EE:
+- 2022EE:
 /DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v5/NANOAODSIM
 
-2023:
+- 2023:
 /DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM
 
-2023BPix:
+- 2023BPix:
 /DYto2L-2Jets_MLL-50_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v4/NANOAODSIM
 
-2024:
+- 2024:
