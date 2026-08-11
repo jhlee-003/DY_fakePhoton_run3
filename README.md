@@ -36,21 +36,30 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 
 
 
-# CRAB task submission
+# CRAB submission
 
-Log into LXPLUS
+### Basic Setup
+1. Log into LXPLUS
 
-Go to your AFS home directory
-- For example, mine is
+2. Go to your AFS home directory
+  - For example, mine is
+    ```bash
+    /afs/cern.ch/user/j/junhyuk/
+    ```
+
+3. Clone this repository:
   ```bash
-  /afs/cern.ch/user/j/junhyuk/
+  git clone https://github.com/jhlee-003/DY_fakePhoton_run3.git
   ```
-Clone this repository:
-```bash
-git clone https://github.com/jhlee-003/DY_fakePhoton_run3.git
-```
 
-First, you need to revise crab config file
+4. Check if you have your own directory in the `htozg-dy-privatemc` CERNBOX
+   ```bash
+   ls /eos/project/h/htozg-dy-privatemc
+   ```
+   - The script will automatically generate a new directory if you don't have it
+
+### CRAB config setup
+First, you need to revise CRAB config file
 
 ```bash
 # Go to config directory of specific a year
@@ -60,13 +69,16 @@ cd DY_fakePhoton_run3/2022/config
 vim *crabConfig.py
 ```
 You're see `Edit below` at the bottom
+
 Parameters to edit:
 - `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory
+  - If you don't have your directory, replace 'YOUR_DIR' with your name (for example, 'junhyuk')
 - `config.Data.totalUnits`: Number of jobs for task
+  - Each job submits 10,000 events (will give ~1,000 events at NanoAOD level)
 - `config.Site.storageSite`: Storage site where you have write permission
 - If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
 
-Submission
+### CRAB Submission
 
 ```bash
 # Setup cmsenv:
