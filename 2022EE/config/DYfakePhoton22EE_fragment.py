@@ -1,5 +1,5 @@
-# Based on the official Run3Summer22 DY fragment:
-# https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/GEN-Run3Summer22wmLHEGS-00471
+# Based on the central Run3Summer22EE DY fragment + jet photon filter:
+# https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/GEN-Run3Summer22EEwmLHEGS-00046
 
 import FWCore.ParameterSet.Config as cms
 
@@ -7,10 +7,8 @@ import FWCore.ParameterSet.Config as cms
 externalLHEProducer = cms.EDProducer(
     "ExternalLHEProducer",
     args=cms.vstring(
-        "/cvmfs/cms.cern.ch/phys_generator/gridpacks/PdmV/Run3Summer22/"
-        "MadGraph5_aMCatNLO/DY/"
-        "DYto2L-2Jets_MLL-50_amcatnloFXFX-pythia8_"
-        "slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
+        "/cvmfs/cms.cern.ch/phys_generator/gridpacks/PdmV/Run3Summer22/MadGraph5_aMCatNLO/DY/"
+        "DYto2L-2Jets_MLL-50_amcatnloFXFX-pythia8_slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
     ),
     nEvents=cms.untracked.uint32(5000),
     numberOfParameters=cms.uint32(1),
@@ -18,7 +16,7 @@ externalLHEProducer = cms.EDProducer(
     scriptName=cms.FileInPath(
         "GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh"
     ),
-    generateConcurrently=cms.untracked.bool(True),
+    generateConcurrently=cms.untracked.bool(False),
 )
 
 
@@ -54,13 +52,15 @@ generator = cms.EDFilter(
             "JetMatching:nQmatch = 5",
             "JetMatching:nJetMax = 2",
             "TimeShower:mMaxGamma = 4.0",
+            "BeamRemnants:primordialKThard=2.48",
+            "TauDecays:externalMode = 2.0"
         ),
         parameterSets=cms.vstring(
             "pythia8CommonSettings",
             "pythia8CP5Settings",
-            "pythia8PSweightsSettings",
             "pythia8aMCatNLOSettings",
             "processParameters",
+            "pythia8PSweightsSettings",
         ),
     ),
 )
@@ -76,6 +76,7 @@ fakePhotonFilter = cms.EDFilter(
 )
 
 
+# Require an opposite-sign electron/muon pair
 dileptonPairFilter = cms.EDFilter(
     "MCParticlePairFilter",
     ParticleID1=cms.untracked.vint32(11, 13),
@@ -95,6 +96,7 @@ dileptonPairFilter = cms.EDFilter(
 )
 
 
+# Require an opposite-sign electron/muon pair and the pi0/eta-origin photon.
 ProductionFilterSequence = cms.Sequence(
     generator * dileptonPairFilter * fakePhotonFilter
 )
