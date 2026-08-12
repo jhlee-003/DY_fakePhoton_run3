@@ -1,4 +1,4 @@
-# Based on the official Run3Summer23BPix DY fragment:
+# Based on the central Run3Summer23BPix DY fragment + jet photon filter:
 # https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/GEN-Run3Summer23BPixwmLHEGS-00325
 
 import FWCore.ParameterSet.Config as cms
@@ -7,10 +7,8 @@ import FWCore.ParameterSet.Config as cms
 externalLHEProducer = cms.EDProducer(
     "ExternalLHEProducer",
     args=cms.vstring(
-        "/cvmfs/cms.cern.ch/phys_generator/gridpacks/PdmV/Run3Summer22/"
-        "MadGraph5_aMCatNLO/DY/"
-        "DYto2L-2Jets_MLL-50_amcatnloFXFX-pythia8_"
-        "slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
+        "/cvmfs/cms.cern.ch/phys_generator/gridpacks/PdmV/Run3Summer22/MadGraph5_aMCatNLO/DY/"
+        "DYto2L-2Jets_MLL-50_amcatnloFXFX-pythia8_slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
     ),
     nEvents=cms.untracked.uint32(5000),
     numberOfParameters=cms.uint32(1),
@@ -77,6 +75,7 @@ fakePhotonFilter = cms.EDFilter(
 )
 
 
+# Require an opposite-sign electron/muon pair
 dileptonPairFilter = cms.EDFilter(
     "MCParticlePairFilter",
     ParticleID1=cms.untracked.vint32(11, 13),
@@ -96,6 +95,7 @@ dileptonPairFilter = cms.EDFilter(
 )
 
 
+# Require an opposite-sign electron/muon pair and the pi0/eta-origin photon.
 ProductionFilterSequence = cms.Sequence(
     generator * dileptonPairFilter * fakePhotonFilter
 )
