@@ -1,5 +1,4 @@
-# Based on the central 2024 tau DY fragment plus the Run 3
-# fake-photon and post-hadronization dilepton filters.
+# Based on the central 2024 tau DY fragment plus the Run 3 fake-photon and post-hadronization dilepton filters.
 # https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/GEN-RunIII2024Summer24wmLHEGS-00056
 
 import FWCore.ParameterSet.Config as cms
