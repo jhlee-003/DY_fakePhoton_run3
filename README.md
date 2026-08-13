@@ -14,20 +14,27 @@ Filter script from Xingchen's repository:
 
 # Local test
 
+Go to a specific directory of the year that you want to test:
+
 ```bash
-# Go to a specific directory of the year that you want to test:
-cd 2022
+cd DY_fakePhoton_run3/2022
+```
 
-# Setup proxy:
+Setup proxy & valid cmssw:
+
+```bash
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+cmssw-el8
+```
 
-# Make a test directory & copy necessary files:
+Make a test directory & copy necessary files & Test run:
+
+```bash
 mkdir test
 cd test
 cp ../voms_proxy.txt .
 cp ../config/*fragment.py .
-
-# Test run:
 bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 ```
 - Test with 100 events (~ 30 min.)
