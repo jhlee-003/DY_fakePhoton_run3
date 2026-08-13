@@ -1,5 +1,4 @@
-# Based on the central 2024 muon DY fragment plus the Run 3
-# fake-photon and dilepton filters.
+# Based on the central 2024 muon DY fragment plus the Run 3 fake-photon and dilepton filters.
 # https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/GEN-RunIII2024Summer24wmLHEGS-00055
 
 import FWCore.ParameterSet.Config as cms
