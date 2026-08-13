@@ -243,7 +243,7 @@ cmsDriver.py  \
   --step NANO \
   --conditions 150X_mcRun3_2024_realistic_v2 \
   --datatier NANOAODSIM \
-  --eventcontent NANOEDMAODSIM1 \
+  --eventcontent NANOAODSIM1 \
   --python_filename "$TAG"__NanoAODv15__cfg.py \
   --fileout file:\$Output_filename \
   --filein file:\$Input_filename \
