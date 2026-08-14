@@ -92,10 +92,7 @@ cmsDriver.py Configuration/GenProduction/python/$Fragment_filename \
   --geometry DB:Extended \
   --conditions 124X_mcRun3_2022_realistic_v12 \
   --customise_commands \
-    "process.source.numberEventsInLuminosityBlock=cms.untracked.uint32(200) \n"\
-    " from IOMC.RandomEngine.RandomServiceHelper import RandomNumberServiceHelper ;"\
-    " randSvc = RandomNumberServiceHelper(process.RandomNumberGeneratorService) ;"\
-    " randSvc.populate()" \
+    "process.source.numberEventsInLuminosityBlock=cms.untracked.uint32(200); from IOMC.RandomEngine.RandomServiceHelper import RandomNumberServiceHelper; randSvc = RandomNumberServiceHelper(process.RandomNumberGeneratorService); randSvc.populate()" \
   --datatier GEN-SIM,LHE \
   --eventcontent RAWSIM,LHE \
   --python_filename "$TAG"__LHE__cfg.py \
