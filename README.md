@@ -16,6 +16,8 @@ Filter script from Xingchen's repository:
 
 # Local test
 
+Note: don't do this in LXPLUS
+
 Go to a specific directory of the year that you want to test:
 
 ```bash
