@@ -2,6 +2,9 @@ from WMCore.Configuration import Configuration
 config = Configuration()
 
 import os
+from datetime import datetime, timezone
+
+submission_tag = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%SUTC")
 work_area = "crab_projects"
 base = "DY_FakePhoton_Run3_24_Tau_FullSim"
 
