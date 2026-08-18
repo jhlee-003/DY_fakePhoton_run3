@@ -17,6 +17,7 @@ SCRIPT=""
 EVENTS=""
 NAMES=""
 STAGEOUT_DIR=""
+SUBMISSION_TAG=""
 
 # Parse remaining key=value arguments
 for a in "$@"; do
@@ -25,7 +26,8 @@ for a in "$@"; do
     events=*)       EVENTS="${a#*=}" ;;
     names=*)        NAMES="${a#*=}" ;;
     stageout_dir=*) STAGEOUT_DIR="${a#*=}" ;;
-    *) echo "WARNING: unknown arg '$a' (expected script=, events=, names=, stageout_dir=)" ;;
+    submission_tag=*) SUBMISSION_TAG="${a#*=}" ;;
+    *) echo "WARNING: unknown arg '$a' (expected script=, events=, names=, submission_tag=, stageout_dir=)" ;;
   esac
 done
 
@@ -39,8 +41,13 @@ test -s FrameworkJobReport.xml || { echo "FrameworkJobReport.xml missing/empty";
 [[ -n "$EVENTS" ]] || { echo "ERROR: missing events=..."; exit 2; }
 [[ -n "$NAMES"  ]] || { echo "ERROR: missing names=..."; exit 2; }
 [[ -n "$STAGEOUT_DIR" ]] || { echo "ERROR: missing stageout_dir=..."; exit 2; }
+[[ -n "$SUBMISSION_TAG" ]] || { echo "ERROR: missing submission_tag=..."; exit 2; }
 [[ "$STAGEOUT_DIR" != /* && "$STAGEOUT_DIR" != *".."* ]] || {
   echo "ERROR: stageout_dir must be a safe relative path"
+  exit 2
+}
+[[ "$SUBMISSION_TAG" =~ ^[A-Za-z0-9_-]+$ ]] || {
+  echo "ERROR: invalid submission tag: $SUBMISSION_TAG"
   exit 2
 }
 
@@ -81,7 +88,7 @@ if [[ "$STATUS" -eq 0 ]]; then
   EOS_HOST="root://eosproject.cern.ch"
   EOS_BASE="/eos/project/h/htozg-dy-privatemc"
   REMOTE_PATH="${EOS_BASE}/${STAGEOUT_DIR}"
-  REMOTE_FILE="${EOS_HOST}/${REMOTE_PATH}/${NANOAOD_NAME}__job-${JOBNUM}.root"
+  REMOTE_FILE="${EOS_HOST}/${REMOTE_PATH}/${NANOAOD_NAME}__job-${JOBNUM}__${SUBMISSION_TAG}.root"
 
   echo "Creating remote directory: $REMOTE_PATH"
   if ! xrdfs "$EOS_HOST" mkdir -p "$REMOTE_PATH"; then
