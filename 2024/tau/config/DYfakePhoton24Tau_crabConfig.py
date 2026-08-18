@@ -52,6 +52,7 @@ config.JobType.scriptArgs  = [
     "script=ProduceDYfakePhoton24Tau.sh",
     "events=10000",
     "names=DYfakePhoton24Tau_FullSim.env",
+    "submission_tag={}".format(submission_tag),
 
 #--------------------------Edit Below--------------------------
     "stageout_dir=YOUR_DIR/2024/tau"  # Directory inside htozg-dy-privatemc
