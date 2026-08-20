@@ -10,8 +10,7 @@ import FWCore.ParameterSet.Config as cms
 externalLHEProducer = cms.EDProducer(
     "ExternalLHEProducer",
     args=cms.vstring(
-        "/cvmfs/cms.cern.ch/phys_generator/gridpacks/PdmV/"
-        "RunIII2024Summer24/MadGraph5_aMCatNLO/DY/"
+        "/cvmfs/cms.cern.ch/phys_generator/gridpacks/PdmV/RunIII2024Summer24/MadGraph5_aMCatNLO/DY/"
         "DYto2L-2Jets_Bin-MLL-50_amcatnloFXFX-pythia8_slc7_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz"
     ),
     nEvents=cms.untracked.uint32(5000),
