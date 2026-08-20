@@ -1,7 +1,5 @@
 ### Warning: This repo is not finished. I uploaded just to share the progress with Xingchen.
 
-### Note: 2024 has 3 sub-directories for each lepton flavor
-
 # DY_fakePhoton_run3
 
 Files for producing DY fake jet photon NanoAOD sample for run3.
@@ -12,11 +10,18 @@ MC gen scripts are originally from Jaebak's repository:
 Filter script from Xingchen's repository:
 - https://github.com/xingchen-fan/DY_stat_boost
 
+About 2024 script:
+- There are 2024 central mc sample for each hard scattering lepton flavor.
+- 2024FlavorSplit directory is for producing separate mc sample for each lepton flavor.
+  - Different gridpacks used for e/mu vs. tau
+  - Different CMSSW version for production of Mini/NanoAOD files
+- 2024 directory is for producing inclusive mc sample like the previous years.
+  - Used e/mu gridpack + most recent CMSSW version for inclusive 2024 DY production script.
+- Recommend using 2024 directory.
 
+# Local test (not mandatory)
 
-# Local test
-
-Note: don't do this in LXPLUS
+Note: not recommended on LXPLUS
 
 Go to a specific directory of the year that you want to test:
 
@@ -83,8 +88,10 @@ You're see `Edit below` at the bottom
 - Press key `i` to start editing
 
 Parameters to edit:
-- `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory
-  - If you don't have your directory, replace `YOUR_DIR` with your name (for example, `junhyuk`)
+- `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory.
+  - If you don't have your directory, replace `YOUR_DIR` with your preferred name that doesn't overlap with others (for example, `junhyuk`).
+  - This will automatically generate a new directory under `/eos/project/h/htozg-dy-privatemc`.
+  - Use that directory for the future MC production.
 - `config.Data.totalUnits`: Number of jobs for the current task (default: 10,000 jobs)
   - Each job submits 10,000 events (10,000 jobs → 100,000,000 events)
 - `config.Site.storageSite`: Storage site where you have write permission
