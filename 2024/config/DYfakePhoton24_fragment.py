@@ -1,5 +1,4 @@
-# Inclusive 2024 DY-to-two-lepton fragment based on the central electron,
-# muon, and tau fragments, plus the Run 3 fake-photon and dilepton filters.
+# Inclusive 2024 DY-to-two-lepton fragment based on the central electron, muon, and tau fragments, plus the Run 3 fake-photon and dilepton filters.
 # Central references:
 #   GEN-RunIII2024Summer24wmLHEGS-00055 (muon)
 #   GEN-RunIII2024Summer24wmLHEGS-00056 (tau)
