@@ -9,13 +9,13 @@ Filter script from Xingchen's repository:
 - https://github.com/xingchen-fan/DY_stat_boost
 
 About 2024 script:
-- There are 2024 central mc sample for each hard scattering lepton flavor.
+- Recommend using 2024 directory.
 - 2024FlavorSplit directory is for producing separate mc sample for each lepton flavor.
   - Different gridpacks used for e/mu vs. tau
   - Different CMSSW version for production of Mini/NanoAOD files
 - 2024 directory is for producing inclusive mc sample like the previous years.
   - Used e/mu gridpack + most recent CMSSW version for inclusive 2024 DY production script.
-- Recommend using 2024 directory.
+
 
 <br>
 
