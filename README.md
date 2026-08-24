@@ -17,6 +17,11 @@ About 2024 script:
   - Used e/mu gridpack + most recent CMSSW version for inclusive 2024 DY production script.
 - Recommend using 2024 directory.
 
+<br>
+
+
+
+
 # Local test (not mandatory)
 
 Note: not recommended on LXPLUS
@@ -48,9 +53,9 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 
 
 
+<br>
 
-
-# CRAB submission
+# CRAB submission (LXPLUS)
 
 ### Basic Setup
 1. Log into LXPLUS
@@ -72,37 +77,9 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
    ```
    - The script will automatically generate a new directory if you don't have it
 
-### CRAB configuration file setup
-First, you need to revise CRAB config file
+<br>
 
-Go to config directory of specific a year & open Config file
-
-```bash
-cd DY_fakePhoton_run3/2022/config
-vim *crabConfig.py
-```
-
-You're see `Edit below` at the bottom
-- Press key `i` to start editing
-
-Parameters to edit:
-- `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory.
-  - If you don't have your directory, replace `YOUR_DIR` with your preferred name that doesn't overlap with others (for example, `junhyuk`).
-  - This will automatically generate a new directory under `/eos/project/h/htozg-dy-privatemc`.
-  - Use that directory for the future MC production.
-- `config.Data.totalUnits`: Number of jobs for the current task (default: 10,000 jobs)
-  - Each job submits 10,000 events (10,000 jobs → 100,000,000 events)
-- `config.Site.storageSite`: Storage site where you have write permission
-- If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
-
-When you're done, type `:wq!` to save and exit
-
-Now, go back to the repo directory:
-```bash
-cd ../..
-```
-
-### CRAB Submission
+### CMSSW environment setup
 
 Go to repo directory if you're not:
 ```bash
@@ -118,25 +95,107 @@ cmsenv
 cd -
 ```
 
-Go to a specific directory of a year:
-```
+<br>
+
+### CRAB configuration file setup
+Go to specific a year (2022 for example) & open CRAB config file:
+
+```bash
 cd 2022
+vim config/*crabConfig.py
 ```
+
+You're see `Edit below` at the bottom.
+```bash
+#--------------------------Edit Below--------------------------
+    "stageout_dir=YOUR_DIR/2022"         # Your directory name inside htozg-dy-privatemc directory
+]
+config.Data.totalUnits  = 10000          # Number of CRAB jobs
+config.Site.storageSite = "T3_KR_KNU"    # Storage site where you have write permission (Required syntactically by CRAB)
+config.General.transferOutputs = False   # Change to `True` if you want to transfer your output to your storage site
+config.General.transferLogs = False      # Change to `True` if you want to transfer the log to your storage site
+```
+- Press key `i` to start editing
+
+Parameters to edit:
+- `"stageout_dir=YOUR_DIR/2022"`: Replace `YOUR_DIR` with your directory name at `htozg-dy-privatemc` directory.
+  - If you don't have your directory, replace `YOUR_DIR` with your preferred name that doesn't overlap with others (for example, `junhyuk`).
+  - This will automatically generate a new directory under `/eos/project/h/htozg-dy-privatemc`.
+  - Use that directory for the future MC production.
+- `config.Data.totalUnits`: Number of jobs for the current task (default: 10,000 jobs is also max. jobs per each task)
+  - Each job submits 10,000 events (10,000 jobs → 100,000,000 events)
+  - Recommend submitting 10,000 jobs per task unless needed otherwise
+- `config.Site.storageSite`: Storage site where you have write permission
+- If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
+
+When you're done, type `:wq!` to save and exit
+
+<br>
+
+### CRAB Submission
+
+You should be inside specific year's directory.
 
 Setup proxy (script requires proxy credential file / you can copy this file to other year's directory as long as it's valid):
 ```bash
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
 ```
+- You can skip this if you already have valid proxy file in the current directory
 
 Check if you have write permission (only if you want to transfer the output to storage site):
 ```
-crab checkwrite --site=T2_KR_KISTI
+crab checkwrite --site=T3_KR_KISTI
 ```
+
+Check if you have all the necessary files before submission
+```bash
+ls
+ls config
+```
+- You should see
+  ```bash
+  Singularity> ls
+  PSet.py  ProduceDYfakePhoton22.sh  config  crab_convert_wrapper.sh voms_proxy.txt
+  Singularity> ls config
+  DYfakePhoton22_FullSim.env  DYfakePhoton22_crabConfig.py  DYfakePhoton22_fragment.py
+  ```
 
 Submit crab task:
 ```
 crab submit -c config/*crabConfig.py
 ```
+
+<br>
+
+### Whitelist (optional)
+10-20% failure rate is expected per each task without whitelist
+- Setting whitelist could reduce the failure rate
+
+Revise crab config file:
+```bash
+vim config/*crabConfig.py
+```
+
+Add this block below `config.section_("Site")`
+```
+config.Site.whitelist = [
+    "T2_CH_CERN",
+    "T2_IT_Bari",
+    "T2_DE_DESY",
+    "T2_IT_Rome",
+    "T2_TR_METU",
+    "T2_CN_Beijing",
+    "T2_ES_CIEMAT",
+    "T2_FR_IPHC",
+    "T2_IT_Legnaro",
+]
+```
+- This list is made purely based on my personal experience
+- You can add/remove sites based on your use case
+- I recommend always keeping `T2_CH_CERN` in the list
+
+<br>
+
 
 
 # Central MC dataset
