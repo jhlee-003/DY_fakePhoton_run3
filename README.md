@@ -1,5 +1,3 @@
-### Warning: This repo is not finished. I uploaded just to share the progress with Xingchen.
-
 # DY_fakePhoton_run3
 
 Files for producing DY fake jet photon NanoAOD sample for run3.
@@ -77,13 +75,13 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 ### CRAB configuration file setup
 First, you need to revise CRAB config file
 
-```bash
-# Go to config directory of specific a year
-cd DY_fakePhoton_run3/2022/config
+Go to config directory of specific a year & open Config file
 
-# Open Config file
+```bash
+cd DY_fakePhoton_run3/2022/config
 vim *crabConfig.py
 ```
+
 You're see `Edit below` at the bottom
 - Press key `i` to start editing
 
