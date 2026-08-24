@@ -61,10 +61,10 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
 1. Log into LXPLUS
 
 2. Go to your AFS home directory
-  - For example, mine is
-    ```bash
-    /afs/cern.ch/user/j/junhyuk/
-    ```
+    - For example, mine is
+      ```bash
+      /afs/cern.ch/user/j/junhyuk/
+      ```
 
 3. Clone this repository:
     ```bash
@@ -75,15 +75,16 @@ bash ../ProduceDYfakePhoton*.sh 0 100 ../config/*.env 2>&1 | tee produce.log
    ```bash
    ls /eos/project/h/htozg-dy-privatemc
    ```
-   - The script will automatically generate a new directory if you don't have it
+   - You'll probably have it if you have submitted Xingchen's Run2 script before.
+   - The script will automatically generate a new directory if you don't have one.
 
 <br>
 
 ### CMSSW environment setup
 
-Go to repo directory if you're not:
+Go to repo directory:
 ```bash
-cd /path/to/DY_fakePhoton_run3
+cd DY_fakePhoton_run3
 ```
 
 Setup CMSSW environment:
@@ -140,14 +141,18 @@ Setup proxy (script requires proxy credential file / you can copy this file to o
 ```bash
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
 ```
-- You can skip this if you already have valid proxy file in the current directory
+- If you have `voms_proxy.txt` file, check if it's still valid:
+  ```bash
+  voms-proxy-info --file "$(pwd)/voms_proxy.txt" --timeleft
+  ```
+  - If the output is less than 200,000, recommend setting up a new proxy.
 
 Check if you have write permission (only if you want to transfer the output to storage site):
 ```
 crab checkwrite --site=T3_KR_KISTI
 ```
 
-Check if you have all the necessary files before submission
+Check if you have all the necessary files before submission:
 ```bash
 ls
 ls config
@@ -168,15 +173,15 @@ crab submit -c config/*crabConfig.py
 <br>
 
 ### Whitelist (optional)
-10-20% failure rate is expected per each task without whitelist
-- Setting whitelist could reduce the failure rate
+10-20% failure rate is expected per each task without whitelist.
+- Setting whitelist could reduce the failure rate.
 
 Revise crab config file:
 ```bash
 vim config/*crabConfig.py
 ```
 
-Add this block below `config.section_("Site")`
+Add this block below `config.section_("Site")`:
 ```
 config.Site.whitelist = [
     "T2_CH_CERN",
@@ -190,9 +195,9 @@ config.Site.whitelist = [
     "T2_IT_Legnaro",
 ]
 ```
-- This list is made purely based on my personal experience
-- You can add/remove sites based on your use case
-- I recommend always keeping `T2_CH_CERN` in the list
+- This list is made purely based on my personal experience.
+- You can add/remove sites based on your use case.
+- I recommend always keeping `T2_CH_CERN` in the list.
 
 <br>
 
