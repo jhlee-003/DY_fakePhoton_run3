@@ -125,7 +125,7 @@ Parameters to edit:
   - Use that directory for the future MC production.
 - `config.Data.totalUnits`: Number of jobs for the current task (default: 10,000 jobs is also max. jobs per each task)
   - Each job submits 10,000 events (10,000 jobs → 100,000,000 events)
-  - Recommend submitting 10,000 jobs per task unless needed otherwise
+  - Recommend submitting 10,000 jobs per task unless otherwise necessary.
 - `config.Site.storageSite`: Storage site where you have write permission
 - If you want to transfer outputs to your storage site, turn `transferOutputs` and `transferLogs` to `True`
 
@@ -145,7 +145,7 @@ voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt -valid 172:0
   ```bash
   voms-proxy-info --file "$(pwd)/voms_proxy.txt" --timeleft
   ```
-  - If the output is less than 200,000, recommend setting up a new proxy.
+  - If the output is less than 300,000, recommend renewing it.
 
 Check if you have write permission (only if you want to transfer the output to storage site):
 ```
