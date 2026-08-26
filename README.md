@@ -188,8 +188,6 @@ config.Site.whitelist = [
     "T2_IT_Bari",
     "T2_DE_DESY",
     "T2_IT_Rome",
-    "T2_TR_METU",
-    "T2_CN_Beijing",
     "T2_ES_CIEMAT",
     "T2_FR_IPHC",
     "T2_IT_Legnaro",
