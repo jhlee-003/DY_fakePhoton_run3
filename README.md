@@ -87,9 +87,13 @@ Go to repo directory:
 cd DY_fakePhoton_run3
 ```
 
-Setup CMSSW environment:
+Use EL8:
 ```bash
 cmssw-el8
+```
+
+Setup CMSSW environment:
+```bash
 cmsrel CMSSW_14_0_21
 cd CMSSW_14_0_21/src
 cmsenv
