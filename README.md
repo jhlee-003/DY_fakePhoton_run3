@@ -177,7 +177,7 @@ crab submit -c config/*crabConfig.py
 <br>
 
 ### Whitelist (optional)
-10-20% failure rate is expected per each task without whitelist.
+~30% failure rate is expected per each task without whitelist.
 - Setting whitelist could reduce the failure rate.
 
 Revise crab config file:
