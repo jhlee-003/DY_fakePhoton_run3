@@ -188,8 +188,8 @@ vim config/*crabConfig.py
 Add this block below `config.section_("Site")`:
 ```
 config.Site.whitelist = [
-    T1_US_FNAL,
-    T2_CH_CERN,
+    "T1_US_FNAL",
+    "T2_CH_CERN",
 ]
 ```
 - Pei-Zhu's whitelist
