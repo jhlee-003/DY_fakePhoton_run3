@@ -188,13 +188,8 @@ vim config/*crabConfig.py
 Add this block below `config.section_("Site")`:
 ```
 config.Site.whitelist = [
-    "T2_CH_CERN",
-    "T2_IT_Bari",
-    "T2_DE_DESY",
-    "T2_IT_Rome",
-    "T2_ES_CIEMAT",
-    "T2_FR_IPHC",
-    "T2_IT_Legnaro",
+    T1_US_FNAL,
+    T2_CH_CERN,
 ]
 ```
 - This list is made purely based on my personal experience.
