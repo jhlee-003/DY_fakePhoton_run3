@@ -177,8 +177,8 @@ crab submit -c config/*crabConfig.py
 <br>
 
 ### Whitelist (optional)
-~30% failure rate is expected per each task without whitelist.
-- Setting whitelist could reduce the failure rate.
+
+Adding whitelist lowers failure rate significantly.
 
 Revise crab config file:
 ```bash
@@ -192,9 +192,7 @@ config.Site.whitelist = [
     T2_CH_CERN,
 ]
 ```
-- This list is made purely based on my personal experience.
-- You can add/remove sites based on your use case.
-- I recommend always keeping `T2_CH_CERN` in the list.
+- Pei-Zhu's whitelist
 
 <br>
 
